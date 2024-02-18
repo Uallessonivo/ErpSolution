@@ -16,7 +16,6 @@
 		<Folder Include="FinancialModule\CashAggregate\" />
 		<Folder Include="FinancialModule\BankAccountAggregate\" />
 		<Folder Include="SalesModule\" />
-		<Folder Include="CustomerModule\CustomerAggregate\" />
 		<Folder Include="SalesModule\BudgetAggregate\" />
 		<Folder Include="PurchasingModule\" />
 		<Folder Include="SalesModule\SaleInvoiceAggregate\" />
