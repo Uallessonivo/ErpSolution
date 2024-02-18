@@ -1,9 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="AccountingModule\AccountingEntriesAggregate\" />
+		<Folder Include="AccountingModule\FinancialStatementsAggregate\" />
+		<Folder Include="AccountingModule\ChartOfAccountsAggregate\" />
+		<Folder Include="FinancialModule\ChartOfAccountsAggregate\" />
+		<Folder Include="FinancialModule\ReceivablesAggregate\" />
+		<Folder Include="FinancialModule\PayablesAggregate\" />
+		<Folder Include="FinancialModule\CashAggregate\" />
+		<Folder Include="FinancialModule\BankAccountAggregate\" />
+		<Folder Include="SalesModule\" />
+		<Folder Include="CustomerModule\CustomerAggregate\" />
+		<Folder Include="SalesModule\BudgetAggregate\" />
+		<Folder Include="PurchasingModule\" />
+		<Folder Include="SalesModule\SaleInvoiceAggregate\" />
+		<Folder Include="SalesModule\SaleOrderAggregate\" />
+		<Folder Include="SalesModule\SellerAggregate\" />
+		<Folder Include="PurchasingModule\PurchaseInvoiceAggregate\" />
+		<Folder Include="PurchasingModule\PurchaseOrderAggregate\" />
+		<Folder Include="PurchasingModule\QuotationAggregate\" />
+		<Folder Include="PurchasingModule\SupplierAggregate\" />
+		<Folder Include="PurchasingModule\ProductAggregate\" />
+		<Folder Include="WarehouseModule\ProductAggregate\" />
+	</ItemGroup>
 
 </Project>
