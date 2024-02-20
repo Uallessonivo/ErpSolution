@@ -15,12 +15,10 @@
 		<Folder Include="FinancialModule\PayablesAggregate\" />
 		<Folder Include="FinancialModule\CashAggregate\" />
 		<Folder Include="FinancialModule\BankAccountAggregate\" />
-		<Folder Include="SalesModule\" />
 		<Folder Include="SalesModule\BudgetAggregate\" />
 		<Folder Include="PurchasingModule\" />
 		<Folder Include="SalesModule\SaleInvoiceAggregate\" />
 		<Folder Include="SalesModule\SaleOrderAggregate\" />
-		<Folder Include="SalesModule\SellerAggregate\" />
 		<Folder Include="PurchasingModule\PurchaseInvoiceAggregate\" />
 		<Folder Include="PurchasingModule\PurchaseOrderAggregate\" />
 		<Folder Include="PurchasingModule\QuotationAggregate\" />
