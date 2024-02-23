@@ -6,20 +6,20 @@ namespace ErpSolution.Domain.CustomerModule.CustomerAggregate.Entities
 {
     public class Customer : BaseEntity
     {
-        private string Cnpj { get; set; }
-        private string Cpf { get; set; }
-        private string Email { get; set; }
-        private string Name { get; set; }
-        private Status CustomerStatus { get; set; } = Status.Active;
-        private Address Address { get; set; }
-        private Contact Contact { get; set; }
-        private Category Category { get; set; }
-        private IReadOnlyList<Seller> Sellers { get; set; }
-        private IReadOnlyList<History> History { get; set; }
-        private FinancialInformation FinancialInformation { get; set; }
+        public string Cnpj { get; private set; }
+        public string Cpf { get; private set; }
+        public string Email { get; private set; }
+        public string Name { get; private set; }
+        public Status CustomerStatus { get; private set; } = Status.Active;
+        public Address Address { get; private set; }
+        public Contact Contact { get; private set; }
+        public Category Category { get; private set; }
+        public IReadOnlyList<Seller> Sellers { get; private set; }
+        public IReadOnlyList<History> History { get; private set; }
+        public FinancialInformation FinancialInformation { get; private set; }
 
         public Customer(string cnpj, string cpf, string email, string name, Address address, Contact contact,
-            Category category)
+            Category category, int creditLimit, int totalDebt)
         {
             Cnpj = cnpj;
             Cpf = cpf;
@@ -30,76 +30,63 @@ namespace ErpSolution.Domain.CustomerModule.CustomerAggregate.Entities
             Category = category;
             Sellers = new List<Seller>().AsReadOnly();
             History = new List<History>().AsReadOnly();
-            FinancialInformation = new FinancialInformation();
+            FinancialInformation = new FinancialInformation(creditLimit, totalDebt);
         }
 
-        public Customer AddSeller(Seller seller)
+        public void AddSeller(Seller seller)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, Name, Address, Contact, Category)
-            {
-                Sellers = Sellers.Concat(new[] { seller }).ToList().AsReadOnly()
-            };
+            Sellers = Sellers.Concat(new[] { seller }).ToList().AsReadOnly();
         }
 
-        public Customer RemoveSeller(Seller seller)
+        public void RemoveSeller(Seller seller)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, Name, Address, Contact, Category)
-            {
-                Sellers = Sellers.Where(x => x.Id != seller.Id).ToList().AsReadOnly()
-            };
+            var sellersList = Sellers.ToList();
+            sellersList.Remove(seller);
+            Sellers = sellersList.AsReadOnly();
         }
 
-        public Customer AddHistory(History history)
+        public void AddHistory(History history)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, Name, Address, Contact, Category)
-            {
-                History = History.Concat(new[] { history }).ToList().AsReadOnly()
-            };
+            History = History.Concat(new[] { history }).ToList().AsReadOnly();
         }
 
-        public Customer UpdateFinancialInformation(FinancialInformation financialInformation)
+        public void SetFinancialInformation(FinancialInformation financialInformation)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, Name, Address, Contact, Category)
-            {
-                FinancialInformation = financialInformation
-            };
+            FinancialInformation = financialInformation;
         }
 
-        public Customer UpdateCategory(Category category)
+        public void SetCategory(Category category)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, Name, Address, Contact, category);
+            Category = category;
         }
 
-        public Customer UpdateContact(Contact contact)
+        public void SetContact(Contact contact)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, Name, Address, contact, Category);
+            Contact = contact;
         }
 
-        public Customer UpdateAddress(Address address)
+        public void SetAddress(Address address)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, Name, address, Contact, Category);
+            Address = address;
         }
 
-        public Customer UpdateName(string name)
+        public void SetName(string name)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, name, Address, Contact, Category);
+            Name = name;
         }
 
-        public Customer UpdateStatus(Status status)
+        public void SetStatus(Status status)
         {
             // Use validation
-            return new Customer(Cnpj, Cpf, Email, Name, Address, Contact, Category)
-            {
-                CustomerStatus = status
-            };
+            CustomerStatus = status;
         }
     }
 }
