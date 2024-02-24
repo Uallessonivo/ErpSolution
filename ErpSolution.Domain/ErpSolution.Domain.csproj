@@ -27,4 +27,8 @@
 		<Folder Include="WarehouseModule\ProductAggregate\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="FluentValidation" Version="11.9.0" />
+	</ItemGroup>
+
 </Project>

@@ -1,16 +1,46 @@
+using ErpSolution.Domain.CustomerModule.CustomerAggregate.Entities;
+using FluentValidation;
+
 namespace ErpSolution.Domain.CustomerModule.CustomerAggregate.Validations;
 
-public class CustomerValidations
+public class CustomerValidations : AbstractValidator<Customer>
 {
-    // public static void ValidateCnpj(string cnpj)
-    // public static void ValidateCpf(string cpf)
-    // public static void ValidateEmail(string email)
-    // public static void ValidateName(string name)
-    // public static void ValidateAddress(Address address)
-    // public static void ValidateContact(Contact contact)
-    // public static void ValidateCategory(Category category)
-    // public static void ValidateSellers(List<Seller> sellers)
-    // public static void ValidateHistory(List<History> history)
-    // public static void ValidateFinancialInformation(FinancialInformation financialInformation)
-    // public static void ValidateCustomerStatus(Status customerStatus)
+    public CustomerValidations()
+    {
+        RuleFor(c => c.Cnpj)
+            .Length(14).WithMessage("CNPJ must have 14 characters")
+            .Matches(@"^\d{14}$").WithMessage("CNPJ must have only numbers");
+        
+        RuleFor(c => c.Cpf)
+            .Length(11).WithMessage("CPF must have 11 characters")
+            .Matches(@"^\d{11}$").WithMessage("CPF must have only numbers");
+        
+        RuleFor(c => c.Name)
+            .NotEmpty().WithMessage("Name is required")
+            .MaximumLength(100).WithMessage("Name must have a maximum of 100 characters");
+        
+        RuleFor(c => c.Email)
+            .NotEmpty().WithMessage("Email is required")
+            .EmailAddress().WithMessage("Email is invalid");
+        
+        RuleFor(c => c.Address)
+            .NotNull().WithMessage("Address is required")
+            .SetValidator(new AddressValidations());
+        
+        RuleFor(c => c.Contact)
+            .NotNull().WithMessage("Contact is required")
+            .SetValidator(new ContactValidations());
+        
+        RuleFor(c => c.Category)
+            .NotNull().WithMessage("Category is required")
+            .SetValidator(new CategoryValidations());
+        
+        RuleFor(c => c.Sellers)
+            .NotNull().WithMessage("Sellers is required")
+            .SetValidator(new SellerValidations());
+
+        RuleFor(c => c.FinancialInformation)
+            .NotNull().WithMessage("Financial Information is required")
+            .SetValidator(new FinancialInformationValidations());
+    }
 }
