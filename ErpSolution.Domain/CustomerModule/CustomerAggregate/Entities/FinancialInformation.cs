@@ -6,8 +6,8 @@ namespace ErpSolution.Domain.CustomerModule.CustomerAggregate.Entities
     public class FinancialInformation : BaseEntity
     {
         public Status Status { get; private set; } = Status.Active;
-        public int CreditLimit { get; private set; } 
-        public int TotalDebt { get; private set; }
+        public int CreditLimit { get; private set; }
+        public int TotalDebt { get; private set; } 
         
         public FinancialInformation(int creditLimit, int totalDebt)
         {

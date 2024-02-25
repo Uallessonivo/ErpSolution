@@ -33,59 +33,50 @@ namespace ErpSolution.Domain.CustomerModule.CustomerAggregate.Entities
             FinancialInformation = new FinancialInformation(creditLimit, totalDebt);
         }
 
-        public void AddSeller(Seller seller)
+        public void SetAddSeller(Seller seller)
         {
-            // Use validation
             Sellers = Sellers.Concat(new[] { seller }).ToList().AsReadOnly();
         }
 
-        public void RemoveSeller(Seller seller)
+        public void SetRemoveSeller(Seller seller)
         {
-            // Use validation
             var sellersList = Sellers.ToList();
             sellersList.Remove(seller);
             Sellers = sellersList.AsReadOnly();
         }
 
-        public void AddHistory(History history)
+        public void SetAddHistory(History history)
         {
-            // Use validation
             History = History.Concat(new[] { history }).ToList().AsReadOnly();
         }
 
         public void SetFinancialInformation(FinancialInformation financialInformation)
         {
-            // Use validation
             FinancialInformation = financialInformation;
         }
 
         public void SetCategory(Category category)
         {
-            // Use validation
             Category = category;
         }
 
         public void SetContact(Contact contact)
         {
-            // Use validation
             Contact = contact;
         }
 
         public void SetAddress(Address address)
         {
-            // Use validation
             Address = address;
         }
 
         public void SetName(string name)
         {
-            // Use validation
             Name = name;
         }
 
         public void SetStatus(Status status)
         {
-            // Use validation
             CustomerStatus = status;
         }
     }

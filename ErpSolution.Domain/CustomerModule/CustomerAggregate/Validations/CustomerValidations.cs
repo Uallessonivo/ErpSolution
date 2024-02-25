@@ -1,4 +1,5 @@
 using ErpSolution.Domain.CustomerModule.CustomerAggregate.Entities;
+using ErpSolution.Domain.SalesModule.SellerAggregate.Validations;
 using FluentValidation;
 
 namespace ErpSolution.Domain.CustomerModule.CustomerAggregate.Validations;
@@ -30,12 +31,11 @@ public class CustomerValidations : AbstractValidator<Customer>
         RuleFor(c => c.Contact)
             .NotNull().WithMessage("Contact is required")
             .SetValidator(new ContactValidations());
-        
+
         RuleFor(c => c.Category)
-            .NotNull().WithMessage("Category is required")
-            .SetValidator(new CategoryValidations());
+            .IsInEnum().WithMessage("Category is invalid");
         
-        RuleFor(c => c.Sellers)
+        RuleForEach(c => c.Sellers)
             .NotNull().WithMessage("Sellers is required")
             .SetValidator(new SellerValidations());
 
